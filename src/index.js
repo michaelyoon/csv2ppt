@@ -31,7 +31,7 @@ const main = async () => {
   })
   const numClimbers = climbers.length
   console.log(`${climbers.length} climbers`)
-
+  const includeNum = false
   const pres = new pptxgen()
   climbers.forEach((climber) => {
     const slide = pres.addSlide()
@@ -78,15 +78,18 @@ const main = async () => {
         color: "#A9A9A9",
       })
     }
-    slide.addText(`${climber.num} / ${numClimbers}`, {
-      x: "10%",
-      y: "85%",
-      w: "80%",
-      align: pres.AlignH.right,
-      valign: pres.AlignV.middle,
-      fontSize: 32,
-      color: "#A9A9A9",
-    })
+
+    if (includeNum) {
+      slide.addText(`${climber.num} / ${numClimbers}`, {
+        x: "10%",
+        y: "85%",
+        w: "80%",
+        align: pres.AlignH.right,
+        valign: pres.AlignV.middle,
+        fontSize: 32,
+        color: "#A9A9A9",
+      })
+    }
   })
   const fileName = "output.pptx"
   pres.writeFile({ fileName })
